@@ -1,4 +1,3 @@
-package com.company;
 
 /**
  * Created by vadym on 26.01.17.
@@ -23,10 +22,10 @@ public class NewArray<T> {
         return length;
     }
 
-    public void add(Object item) {
+    public void add(T item) {
         if (iter < array.length) {
-        array[iter++] = item; }
-        else if (iter >= array.length) {
+            array[iter++] = item;
+        } else if (iter >= array.length) {
             Object[] temp = new Object[++length];
             System.arraycopy(array, 0, temp, 0, array.length);
             array = temp;
@@ -34,24 +33,24 @@ public class NewArray<T> {
         }
     }
 
-    public void remove(int item){
-        Object[] temp = new Object[array.length-1];
+    public void remove(int item) {
+        Object[] temp = new Object[array.length - 1];
         array[item] = null;
         for (int i = 0, j = 0; i < array.length; i++) {
             if (array[i] != null) {
                 temp[j] = array[i];
-            j++;
+                j++;
             }
         }
         array = temp;
         length--;
 
-        }
+    }
 
-    public void remove(Object o){
-        Object[] temp = new Object[array.length-1];
+    public void remove(T o) {
+        Object[] temp = new Object[array.length - 1];
         for (int i = 0, j = 0; i < array.length; i++) {
-           if (!o.equals(array[i])) {
+            if (!o.equals(array[i])) {
                 temp[j] = array[i];
                 j++;
             }
@@ -62,13 +61,8 @@ public class NewArray<T> {
     }
 
 
-
-
-
-
-
-    public Object get(int i) {
-        return array[i];
+    public T get(int i) {
+        return (T) array[i];
     }
 
 }

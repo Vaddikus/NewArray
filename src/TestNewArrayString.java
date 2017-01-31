@@ -1,5 +1,8 @@
-package com.company;
 
+
+import java.lang.reflect.Array;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -7,7 +10,7 @@ import java.util.Arrays;
  */
 public class TestNewArrayString {
     public static void main(String[] args) {
-        NewArray<String> list = new NewArray();
+        NewArraySimple<String> list = new NewArraySimple<>();
         list.add("Zero");
         list.add("One");
         list.add("Two");
@@ -30,5 +33,7 @@ public class TestNewArrayString {
         }
         System.out.println();
         System.out.println("List length after removing: " + list.size());
+
+
     }
 }
