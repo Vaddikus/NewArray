@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class TestNewArrayString {
     public static void main(String[] args) {
         NewArraySimple<String> list = new NewArraySimple<>();
-        list.add("Zero");
+        list.add(null);
         list.add("One");
         list.add("Two");
         list.add("Three");
@@ -25,9 +25,9 @@ public class TestNewArrayString {
         }
         System.out.println();
         System.out.println("List length after removing: " + list.size());
-        list.remove("Zero");
+        list.remove(null);
 
-        System.out.println("List after removing \"Zero\": ");
+        System.out.println("List after removing \"null\": ");
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
