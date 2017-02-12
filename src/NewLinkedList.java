@@ -1,12 +1,29 @@
+import java.util.Iterator;
 import java.util.Objects;
 
 /**
  * Created by vadymh on 2/1/2017.
  */
-public class NewLinkedList<T> {
+public class NewLinkedList<T> implements Iterable<T> {
+
+
+
+    private class Element<T> {
+        T value;
+        Element next;
+
+
+        public Element(T item) {
+
+            value = item;
+            this.next = null;
+        }
+
+    }
+
+
     private Element head;
     private int size = 0;
-
 
 
     public boolean add(T item) {
@@ -61,13 +78,9 @@ public class NewLinkedList<T> {
     }
 
     public boolean contains(T item) {
-        int counter = 0;
-        for (int i = 0; i < size(); i++) {
-            T value = get(i);
-            if (value == item)
-                return true;
-        }
-        return false;
+        return indexOf(item) != -1;
+
+
     }
 
     public T element() {
@@ -86,13 +99,35 @@ public class NewLinkedList<T> {
 
 
     public int indexOf(T item) {
-        for (int i = 0; i < size(); i++) {
-            T value = get(i);
-            if (value == item)
-                return i;
-        }
+        Iterator iter = iterator();
+        int counter = 0;
+            while (iter.hasNext()) {
+                if (iter.next() == item)
+                    return counter;
+                counter++;
+            }
+
         return -1;
     }
+
+    @Override
+    public Iterator iterator() {
+        Element element = head;
+        return new Iterator() {
+            @Override
+            public boolean hasNext() {
+                return element.next != null;
+            }
+
+            @Override
+            public T next() {
+
+                return (T) element.next;
+            }
+        };
+    }
+
+
 
     public int lastIndexOf(T item) {
         for (int i = size() - 1; i >= 0; i--) {
@@ -158,23 +193,23 @@ public class NewLinkedList<T> {
         return null;
     }
 
-    public boolean remove(T item){
+    public boolean remove(T item) {
         int index = indexOf(item);
-        if (remove(index) != null){
+        if (remove(index) != null) {
             return true;
         }
         return false;
     }
 
 
-    public T set(int index, T item){
+    public T set(int index, T item) {
         int counter = 0;
         Element element = head;
-        while (counter != index){
+        while (counter != index) {
             element = element.next;
             counter++;
         }
-        element.value=item;
+        element.value = item;
         return (T) element.value;
     }
 
@@ -183,7 +218,7 @@ public class NewLinkedList<T> {
     }
 
 
-    public T[] toArray(){
+    public T[] toArray() {
         T[] array = (T[]) new Object[size()];
         for (int i = 0; i < size(); i++) {
             array[i] = get(i);
@@ -193,18 +228,6 @@ public class NewLinkedList<T> {
 
 
 
-    private class Element<T> {
-        T value;
-        Element next;
-
-
-        public Element(T item) {
-
-            value = item;
-            this.next = null;
-        }
-
-    }
 
 }
 
